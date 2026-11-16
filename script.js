@@ -1,4 +1,4 @@
-/* Oldskool website */
+/* Oldschool website */
 
 // Where contact messages are sent.
 // Create a form at a form-forwarding service (for example Formspree), tell it
