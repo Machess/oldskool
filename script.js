@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setupMenu();
   setupContactForm();
   setupHeroQuestion();
+  setupCarousels();
 });
 
 /* Footer year */
@@ -134,5 +135,24 @@ function setupHeroQuestion() {
         guide.textContent = 'Not quite. Have another think. There is no hurry.';
       }
     });
+  });
+}
+
+/* Game screens: one picture at a time, changed only by the arrows (no autoplay) */
+function setupCarousels() {
+  document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+    const slides = Array.from(carousel.querySelectorAll('.carousel-frame img'));
+    const count = carousel.querySelector('.carousel-count');
+    if (slides.length < 2) return;
+    let current = 0;
+
+    function show(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach(function (img, i) { img.hidden = i !== current; });
+      if (count) count.textContent = (current + 1) + ' / ' + slides.length;
+    }
+
+    carousel.querySelector('[data-prev]').addEventListener('click', function () { show(current - 1); });
+    carousel.querySelector('[data-next]').addEventListener('click', function () { show(current + 1); });
   });
 }
