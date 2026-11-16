@@ -1,6 +1,6 @@
 # Oldschool
 
-Website for Oldschool, a studio making educational games and stories for children aged 6 to 12.
+Website for Oldschool, a non-profit project making free educational games and stories for children aged 6 to 12.
 
 Plain HTML, CSS and JavaScript. No build step: host the files as they are.
 
