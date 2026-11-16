@@ -1,6 +1,14 @@
 /* Oldskool launch page
    Colours and fonts live in :root so the whole look can be changed in one place. */
 
+/* Fonts are hosted with the site (see /fonts), so no visitor data goes to a font service. */
+@font-face { font-family: 'Grenze Gotisch'; font-weight: 800; font-style: normal; font-display: swap; src: url('fonts/grenze-gotisch-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 400; font-style: normal; font-display: swap; src: url('fonts/nunito-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 700; font-style: normal; font-display: swap; src: url('fonts/nunito-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 800; font-style: normal; font-display: swap; src: url('fonts/nunito-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Silkscreen'; font-weight: 400; font-style: normal; font-display: swap; src: url('fonts/silkscreen-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Silkscreen'; font-weight: 700; font-style: normal; font-display: swap; src: url('fonts/silkscreen-latin-700-normal.woff2') format('woff2'); }
+
 :root {
   --night: #171226;
   --night-deep: #100C1C;
@@ -95,7 +103,7 @@ h3 { font-size: 40px; line-height: 1; }
 .accent { color: var(--gold); }
 
 .lead { font-size: 20px; color: var(--text-soft); max-width: 560px; }
-.section-head .lead, .signup .lead { max-width: none; }
+.section-head .lead { max-width: none; }
 .lead-bright { color: #E2DAF7; }
 .section-parchment .lead { color: var(--ink-soft); max-width: 520px; }
 
@@ -120,6 +128,12 @@ h3 { font-size: 40px; line-height: 1; }
 .btn:hover { background: #FFD569; color: var(--ink); }
 .btn:active { transform: translateY(3px); box-shadow: 0 3px 0 var(--gold-dark); }
 .btn-small { height: 44px; padding: 0 18px; font-size: 14px; box-shadow: 0 4px 0 var(--gold-dark); }
+.btn-ghost { background: var(--stone); color: var(--text); border: 3px solid var(--border); box-shadow: 0 6px 0 var(--shadow); }
+.btn-ghost:hover { background: var(--stone-light); color: var(--text); }
+.btn-ghost:active { box-shadow: 0 3px 0 var(--shadow); }
+.btn[disabled] { opacity: 0.6; cursor: default; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
 
 /* ---------- Header ---------- */
 
@@ -205,20 +219,27 @@ img.arch-art { border: none; padding: 0; object-fit: cover; }
 
 /* ---------- Forms ---------- */
 
-.signup-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px; margin-top: 8px; }
-.signup-form-center { justify-content: center; width: 100%; text-align: left; }
-.field { display: flex; flex-direction: column; gap: 6px; flex: 1 1 260px; max-width: 380px; }
-.field label { font-family: var(--font-pixel); font-size: 13px; text-transform: uppercase; color: var(--text-soft); }
-.field input {
-  height: 56px; width: 100%; padding: 0 16px;
+.contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 32px; text-align: left; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field-wide { grid-column: 1 / -1; }
+.field label { font-family: var(--font-pixel); font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--ink); }
+.field input, .field textarea {
+  width: 100%; padding: 14px 16px;
   font: inherit; font-size: 18px; color: var(--ink);
-  background: var(--parchment); border: 3px solid var(--border); border-radius: 8px;
+  background: var(--parchment-light); border: 3px solid var(--ink); border-radius: 8px;
 }
+.field input { height: 56px; padding-top: 0; padding-bottom: 0; }
+.field textarea { resize: vertical; min-height: 150px; }
 .field input::placeholder { color: #6B5A44; }
-.field input[aria-invalid="true"] { border-color: #FF9F8A; }
-.form-message { flex: 1 1 100%; min-height: 1.6em; font-weight: 700; color: var(--gold); }
-.form-message.is-error { color: #FFB3A3; }
-.signup-form-center .form-message { text-align: center; }
+.field [aria-invalid="true"] { border-color: #A3271A; background: #FFE9E2; }
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.contact-actions .btn { box-shadow: 0 6px 0 var(--ink); border: 3px solid var(--ink); }
+.contact-actions .btn:active { box-shadow: 0 3px 0 var(--ink); }
+.form-note { flex: 1 1 260px; font-size: 15px; color: var(--ink-soft); }
+.form-note a { color: var(--ink-purple); font-weight: 700; }
+.form-message { min-height: 1.6em; font-weight: 800; color: #1F5B2E; }
+.form-message.is-error { color: #A3271A; }
 
 /* ---------- Panels ---------- */
 
@@ -290,9 +311,21 @@ img.arch-art { border: none; padding: 0; object-fit: cover; }
 .workshop { border: 3px dashed var(--border-light); border-radius: 14px; padding: 22px 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 32px; }
 .workshop-text { flex: 1 1 420px; color: var(--text-soft); }
 
-/* Sign-up */
-.signup { padding: 112px 0; }
-.signup-inner { max-width: 780px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+/* Contact */
+.contact { padding: 112px 0; }
+.contact-inner { max-width: 860px; display: flex; flex-direction: column; gap: 40px; }
+.contact-head { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.contact-head .lead { max-width: 620px; }
+
+/* Privacy and other text pages */
+.legal { padding: 72px 0 104px; }
+.legal-inner { max-width: 780px; display: flex; flex-direction: column; gap: 20px; }
+.legal h1 { font-size: clamp(48px, 7vw, 84px); line-height: 0.95; }
+.legal h2 { font-size: 36px; line-height: 1.05; margin-top: 28px; }
+.legal p, .legal li { color: var(--text-soft); }
+.legal ul { list-style: disc; padding-left: 24px; display: flex; flex-direction: column; gap: 8px; }
+.legal strong { color: var(--text); }
+.legal .todo { background: var(--stone); border: 3px dashed var(--border-light); border-radius: 10px; padding: 14px 18px; color: var(--text); }
 
 /* Footer */
 .site-footer { background: var(--night-deep); color: var(--text-muted); border-top: 4px solid var(--stone-light); font-size: 15px; }
@@ -317,6 +350,7 @@ img.arch-art { border: none; padding: 0; object-fit: cover; }
   .lead, .hero .lead { font-size: 18px; }
   .rules-list li { font-size: 18px; }
   .parental { padding: 24px; }
+  .contact-form { grid-template-columns: minmax(0, 1fr); padding: 22px; }
 
   .nav-toggle { display: inline-flex; align-items: center; }
   .site-nav { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; padding-bottom: 8px; }

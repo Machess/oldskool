@@ -6,9 +6,6 @@
   <title>Oldskool | Games that level kids up for real</title>
   <meta name="description" content="Oldskool is a studio that makes educational games and stories for children. Math, reading and reasoning first, with good values and a calm pace.">
   <meta name="theme-color" content="#171226">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600;800&family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,7 +24,7 @@
       <a href="#calm">Calm by design</a>
       <a href="#skills">What we teach</a>
       <a href="#who">Who it's for</a>
-      <a class="btn btn-small" href="#signup">Join the quest</a>
+      <a class="btn btn-small" href="#contact">Contact us</a>
     </nav>
   </div>
 </header>
@@ -38,18 +35,14 @@
 <section id="top" class="section hero">
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <p class="eyebrow eyebrow-purple">A new kind of game studio · Launching [LAUNCH DATE]</p>
+      <p class="eyebrow eyebrow-purple">A new kind of game studio · For ages 6 to 12</p>
       <h1>Level up <span class="accent">for real.</span></h1>
       <p class="lead">Oldskool is a studio that makes educational games and stories for children. Math, reading and reasoning come first, wrapped in adventures with good values and a calm pace, so screen time turns into actual learning.</p>
-      <form class="signup-form" novalidate>
-        <div class="field">
-          <label for="hero-email">Parent's email</label>
-          <input id="hero-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-        </div>
-        <button class="btn" type="submit">Join the quest</button>
-        <p class="form-message" role="status" aria-live="polite"></p>
-      </form>
-      <p class="small-note">One email on launch day. Nothing else.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#how">See how we make them</a>
+        <a class="btn btn-ghost" href="#contact">Contact us</a>
+      </div>
+      <p class="small-note">Play in a web browser or on an Android tablet.</p>
     </div>
 
     <div class="hero-demo">
@@ -243,7 +236,7 @@
     </div>
     <div class="grid grid-2">
       <article class="panel">
-        <p class="step">PLAYER ONE · AGES [AGE RANGE]</p>
+        <p class="step">PLAYER ONE · AGES 6 TO 12</p>
         <h3>Children</h3>
         <p>Curious kids who love a good story and a fair challenge. They get real adventures, characters worth looking up to, and the quiet pride of working something out for themselves.</p>
       </article>
@@ -254,25 +247,43 @@
       </article>
     </div>
     <div class="workshop">
-      <span class="eyebrow eyebrow-gold eyebrow-small">In the workshop</span>
-      <span class="workshop-text">Our first adventure, Cursed Castle, is on the workbench now. More games and stories will follow, all built the same way.</span>
+      <span class="eyebrow eyebrow-gold eyebrow-small">Where to play</span>
+      <span class="workshop-text">Our games run as web apps in the browser and on Android tablets. More games and stories are on the way, all built the same way.</span>
     </div>
   </div>
 </section>
 
-<!-- SIGN UP -->
-<section id="signup" class="section signup">
-  <div class="wrap signup-inner">
-    <p class="eyebrow eyebrow-purple">Press start</p>
-    <h2 class="h-big">Ready, player one?</h2>
-    <p class="lead">Oldskool launches [LAUNCH DATE] on [PLATFORMS]. Leave your email and we'll send word once, on the day.</p>
-    <form class="signup-form signup-form-center" novalidate>
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <div class="wrap contact-inner">
+    <div class="contact-head">
+      <p class="eyebrow eyebrow-purple">Send a message</p>
+      <h2 class="h-big">Talk to us.</h2>
+      <p class="lead">Questions about our games, ideas, or a word from one parent to another? Write to us here and we will reply by email.</p>
+    </div>
+    <form id="contact-form" class="contact-form parchment" novalidate>
       <div class="field">
-        <label for="cta-email">Parent's email</label>
-        <input id="cta-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="contact-name">Your name</label>
+        <input id="contact-name" name="name" type="text" autocomplete="name" required>
       </div>
-      <button class="btn" type="submit">Join the quest</button>
-      <p class="form-message" role="status" aria-live="polite"></p>
+      <div class="field">
+        <label for="contact-email">Your email</label>
+        <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field field-wide">
+        <label for="contact-message">Your message</label>
+        <textarea id="contact-message" name="message" rows="6" required></textarea>
+      </div>
+      <!-- Hidden from people. Spam robots fill it in, and the message is then dropped. -->
+      <div class="trap" aria-hidden="true">
+        <label for="contact-website">Leave this empty</label>
+        <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="contact-actions field-wide">
+        <button class="btn" type="submit">Send message</button>
+        <p class="form-note">Children: please ask a parent to write for you. We use your details only to reply. See our <a href="privacy.html">privacy page</a>.</p>
+      </div>
+      <p class="form-message field-wide" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -282,8 +293,8 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <span class="footer-logo">Oldskool</span>
-    <span>© <span id="year"></span> Oldskool · [CONTACT EMAIL]</span>
-    <span class="footer-links"><a href="#">Privacy</a><a href="#">For parents</a></span>
+    <span>© <span id="year"></span> Oldskool</span>
+    <span class="footer-links"><a href="privacy.html">Privacy</a><a href="#contact">Contact</a></span>
   </div>
 </footer>
 

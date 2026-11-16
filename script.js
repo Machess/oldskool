@@ -1,15 +1,17 @@
-/* Oldskool launch page */
+/* Oldskool website */
 
-// Where sign-ups are sent. Paste the form URL from your mailing-list service
-// (Mailchimp, Buttondown, Formspree, your own server...). It receives a POST
-// with JSON: { "email": "parent@example.com" }.
-// While this is empty, the form tells visitors that sign-up is not open yet.
-const SIGNUP_ENDPOINT = '';
+// Where contact messages are sent.
+// Create a form at a form-forwarding service (for example Formspree), tell it
+// to deliver to your Outlook address, and paste the form's URL here.
+// Your email address stays inside that service: it never appears on this site.
+// The form sends a POST with JSON: { "name": "...", "email": "...", "message": "..." }
+// While this is empty, the form tells visitors it is not connected yet.
+const CONTACT_ENDPOINT = '';
 
 document.addEventListener('DOMContentLoaded', function () {
   setYear();
   setupMenu();
-  setupSignupForms();
+  setupContactForm();
   setupHeroQuestion();
 });
 
@@ -39,54 +41,75 @@ function setupMenu() {
   });
 }
 
-/* Email sign-up */
-function setupSignupForms() {
+/* Contact form */
+function setupContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const nameInput = form.elements.name;
+  const emailInput = form.elements.email;
+  const messageInput = form.elements.message;
+  const trap = form.elements.website;
+  const button = form.querySelector('button[type="submit"]');
+  const status = form.querySelector('.form-message');
 
-  document.querySelectorAll('.signup-form').forEach(function (form) {
-    const input = form.querySelector('input[type="email"]');
-    const button = form.querySelector('button[type="submit"]');
-    const message = form.querySelector('.form-message');
+  function say(text, isError) {
+    status.textContent = text;
+    status.classList.toggle('is-error', Boolean(isError));
+  }
 
-    function say(text, isError) {
-      message.textContent = text;
-      message.classList.toggle('is-error', Boolean(isError));
-      input.setAttribute('aria-invalid', isError ? 'true' : 'false');
+  function check(input, ok) {
+    input.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    return ok;
+  }
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    const nameOk = check(nameInput, name.length > 0);
+    const emailOk = check(emailInput, emailPattern.test(email));
+    const messageOk = check(messageInput, message.length > 0);
+
+    if (!nameOk || !emailOk || !messageOk) {
+      say('Please fill in your name, a full email address and a message.', true);
+      (!nameOk ? nameInput : !emailOk ? emailInput : messageInput).focus();
+      return;
     }
 
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
-      const email = input.value.trim();
+    // A filled-in trap field means a spam robot: stop without sending.
+    if (trap && trap.value) {
+      form.reset();
+      say('Thank you. Your message has been sent.', false);
+      return;
+    }
 
-      if (!emailPattern.test(email)) {
-        say('Please enter a full email address, like you@example.com.', true);
-        input.focus();
-        return;
-      }
+    if (!CONTACT_ENDPOINT) {
+      say('The contact form is not connected yet. Please try again soon.', true);
+      return;
+    }
 
-      if (!SIGNUP_ENDPOINT) {
-        say('Sign-up is not open yet. Please check back soon.', true);
-        return;
-      }
+    button.disabled = true;
+    say('Sending...', false);
 
-      button.disabled = true;
-      say('Sending...', false);
-
-      try {
-        const response = await fetch(SIGNUP_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email: email })
-        });
-        if (!response.ok) throw new Error('Sign-up failed: ' + response.status);
-        form.reset();
-        say('You are on the list. We will write once, on launch day.', false);
-      } catch (error) {
-        say('That did not go through. Please try again in a moment.', true);
-      } finally {
-        button.disabled = false;
-      }
-    });
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, message: message })
+      });
+      if (!response.ok) throw new Error('Contact form failed: ' + response.status);
+      form.reset();
+      say('Thank you. Your message has been sent, and we will reply by email.', false);
+    } catch (error) {
+      say('That did not go through. Please try again in a moment.', true);
+    } finally {
+      button.disabled = false;
+    }
   });
 }
 
