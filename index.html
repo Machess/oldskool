@@ -6,6 +6,9 @@
   <title>Oldschool | Games that level kids up for real</title>
   <meta name="description" content="Oldschool is a studio that makes educational games and stories for children. Math, reading and reasoning first, with good values and a calm pace.">
   <meta name="theme-color" content="#171226">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,9 +17,9 @@
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="logo" href="#top">
-      <svg aria-hidden="true" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 L29 7 L29 17 C29 24 24 29 17 31 C10 29 5 24 5 17 L5 7 Z"></path><path d="M12 17 L16 21 L23 12"></path></svg>
-      Oldschool
+    <a class="logo" href="#top" aria-label="Oldschool, home">
+      <span class="logo-tile"><img src="images/logo-mark.png" alt="" width="400" height="200"></span>
+      <img class="logo-word" src="images/logo-wordmark.png" alt="" width="783" height="120">
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
@@ -48,8 +51,8 @@
 
     <div class="hero-demo">
       <div class="arch">
-        <!-- Replace this placeholder with an <img> of your key art -->
-        <div class="art-slot arch-art">[Studio key art]</div>
+        <!-- The logo stands here until the studio key art is ready: swap this block for an <img class="arch-art"> -->
+        <div class="arch-art arch-logo"><img src="images/logo.png" alt="The Oldschool logo: an open book with a mountain and a winding path" width="914" height="520"></div>
         <div class="quest-bar" aria-hidden="true"><span>QUEST</span><div class="quest-track"><div class="quest-fill"></div></div></div>
         <p class="sum">7 + 5 = ?</p>
         <div class="answers" role="group" aria-label="Pick an answer">
@@ -356,7 +359,10 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span class="footer-logo">Oldschool</span>
+    <span class="footer-brand">
+      <span class="logo-tile logo-tile-small"><img src="images/logo-mark.png" alt="" width="400" height="200"></span>
+      <img class="logo-word logo-word-small" src="images/logo-wordmark.png" alt="Oldschool" width="783" height="120" loading="lazy">
+    </span>
     <span>© <span id="year"></span> Oldschool</span>
     <span class="footer-links"><a href="privacy.html">Privacy</a><a href="#contact">Contact</a></span>
   </div>

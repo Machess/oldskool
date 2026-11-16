@@ -134,11 +134,14 @@ h3 { font-size: 40px; line-height: 1; }
 .site-header { background: var(--night-deep); border-bottom: 4px solid var(--stone-light); }
 .header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding-top: 14px; padding-bottom: 14px; }
 
-.logo {
-  display: flex; align-items: center; gap: 12px; min-height: 48px;
-  font-family: var(--font-display); font-weight: 800; font-size: 40px; line-height: 1;
-  color: var(--gold); text-decoration: none;
-}
+.logo { display: flex; align-items: center; gap: 14px; min-height: 52px; text-decoration: none; }
+/* The logo's navy needs a light ground, so the mark sits on a parchment tile */
+.logo-tile { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 7px 10px; background: var(--parchment); border: 3px solid var(--ink); border-radius: 10px; box-shadow: 0 4px 0 var(--shadow); }
+.logo-tile img { display: block; height: 100%; width: auto; }
+.logo-word { display: block; height: 26px; width: auto; }
+.logo-tile-small { height: 40px; padding: 5px 8px; box-shadow: none; }
+.logo-word-small { height: 18px; }
+.footer-brand { display: inline-flex; align-items: center; gap: 12px; }
 
 .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 26px; font-family: var(--font-pixel); font-size: 14px; text-transform: uppercase; }
 .site-nav a:not(.btn) { color: var(--text); text-decoration: none; padding: 12px 0; }
@@ -175,6 +178,8 @@ h3 { font-size: 40px; line-height: 1; }
 .arch-art { height: 190px; border-radius: 120px 120px 10px 10px; }
 /* When you swap the placeholder for an image, give it class="arch-art" too */
 img.arch-art { border: none; padding: 0; object-fit: cover; }
+.arch-logo { width: 100%; display: flex; align-items: center; justify-content: center; padding: 18px 26px 14px; background: var(--parchment); border: 3px solid var(--ink); }
+.arch-logo img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; }
 
 .quest-bar { width: 100%; display: flex; align-items: center; gap: 10px; font-family: var(--font-pixel); font-size: 12px; color: var(--text-muted); }
 .quest-track { flex: 1; height: 14px; background: var(--night-deep); border: 2px solid var(--border); border-radius: 8px; overflow: hidden; }
@@ -340,7 +345,6 @@ img.arch-art { border: none; padding: 0; object-fit: cover; }
 /* Footer */
 .site-footer { background: var(--night-deep); color: var(--text-muted); border-top: 4px solid var(--stone-light); font-size: 15px; }
 .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; padding-top: 28px; padding-bottom: 28px; }
-.footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 28px; color: var(--gold); }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { color: var(--text-muted); padding: 12px 0; }
 .footer-links a:hover { color: var(--gold); }

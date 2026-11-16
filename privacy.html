@@ -6,6 +6,9 @@
   <title>Privacy | Oldschool</title>
   <meta name="description" content="How Oldschool handles personal information on this website and in its games.">
   <meta name="theme-color" content="#171226">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,9 +17,9 @@
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="logo" href="index.html">
-      <svg aria-hidden="true" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 L29 7 L29 17 C29 24 24 29 17 31 C10 29 5 24 5 17 L5 7 Z"></path><path d="M12 17 L16 21 L23 12"></path></svg>
-      Oldschool
+    <a class="logo" href="index.html" aria-label="Oldschool, home">
+      <span class="logo-tile"><img src="images/logo-mark.png" alt="" width="400" height="200"></span>
+      <img class="logo-word" src="images/logo-wordmark.png" alt="" width="783" height="120">
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
@@ -80,7 +83,10 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span class="footer-logo">Oldschool</span>
+    <span class="footer-brand">
+      <span class="logo-tile logo-tile-small"><img src="images/logo-mark.png" alt="" width="400" height="200"></span>
+      <img class="logo-word logo-word-small" src="images/logo-wordmark.png" alt="Oldschool" width="783" height="120" loading="lazy">
+    </span>
     <span>© <span id="year"></span> Oldschool</span>
     <span class="footer-links"><a href="privacy.html">Privacy</a><a href="index.html#contact">Contact</a></span>
   </div>
