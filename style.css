@@ -320,6 +320,9 @@ img.arch-art { border: none; padding: 0; object-fit: cover; }
 /* Games */
 .game { gap: 14px; padding: 32px; }
 .game h3 { font-size: 48px; }
+.game-solo { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 28px 40px; }
+.game-solo .carousel { flex: 1 1 460px; min-width: 0; margin-bottom: 0; }
+.game-copy { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
 .game-play { align-self: flex-start; margin-top: 8px; }
 .tags { display: flex; flex-wrap: wrap; gap: 10px; font-family: var(--font-pixel); font-size: 12px; text-transform: uppercase; }
 .tags li { border: 2px solid var(--border-light); border-radius: 6px; padding: 6px 10px; color: var(--text); }
